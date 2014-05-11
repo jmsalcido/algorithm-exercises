@@ -20,9 +20,6 @@ public class LinkedList<E> implements List<E> {
     @Override
     // add at the end of the list
     public void add(E element) {
-        if(element == null) {
-            return;
-        }
         SimpleNode<E> newNode = new SimpleNode<>(element, null);
         if(rootNode == null) {
             rootNode = newNode;
@@ -46,7 +43,7 @@ public class LinkedList<E> implements List<E> {
         if(index == 0) {
             rootNode = new SimpleNode<>(element, actualNode);
             rootNode.setIndex(index);
-            moveIndex(true, rootNode.getNext());
+            ListUtils.moveIndex(true, rootNode.getNext());
         } else {
             SimpleNode<E> nextNode = actualNode.getNext();
             while(nextNode != null) {
@@ -54,7 +51,7 @@ public class LinkedList<E> implements List<E> {
                     actualNode.setNext(new SimpleNode<>(element, nextNode));
                     nextNode = actualNode.getNext();
                     nextNode .setIndex(index);
-                    moveIndex(true, nextNode.getNext());
+                    ListUtils.moveIndex(true, nextNode.getNext());
                     break;
                 }
                 actualNode = nextNode;
@@ -70,7 +67,7 @@ public class LinkedList<E> implements List<E> {
         } else {
             actual.setNext(delete.getNext());
         }
-        moveIndex(false, actual.getNext());
+        ListUtils.moveIndex(false, actual.getNext());
     }
 
     @Override
@@ -79,7 +76,7 @@ public class LinkedList<E> implements List<E> {
 
         if(index == 0) {
             rootNode = rootNode.getNext();
-            moveIndex(false, rootNode);
+            ListUtils.moveIndex(false, rootNode);
         } else {
             SimpleNode<E> deleteNode = rootNode;
             SimpleNode<E> actualNode = deleteNode;
@@ -97,16 +94,6 @@ public class LinkedList<E> implements List<E> {
             }
         }
         size-=1;
-    }
-
-    private void moveIndex(boolean increase, SimpleNode<E> node) {
-        if(node != null) {
-            do {
-                int value = increase ? 1 : -1;
-                node.setIndex(node.getIndex() + value);
-                node = node.getNext();
-            } while (node != null);
-        }
     }
 
     @Override

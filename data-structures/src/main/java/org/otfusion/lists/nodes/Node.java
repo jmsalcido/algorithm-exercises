@@ -21,5 +21,5 @@ public abstract class Node<E> {
         this.index = index;
     }
 
-    protected abstract Node<E> getNext();
+    public abstract Node<E> getNext();
 }

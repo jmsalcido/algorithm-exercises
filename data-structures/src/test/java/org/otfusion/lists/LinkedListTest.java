@@ -79,7 +79,7 @@ public class LinkedListTest {
     public void testAddNull() {
         linkedList = new LinkedList<>();
         linkedList.add(null);
-        assertEquals(0, linkedList.size());
+        assertEquals(1, linkedList.size());
     }
 
     @Test
