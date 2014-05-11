@@ -10,6 +10,7 @@ public class SimpleNode<E> extends Node<E>{
         this.next = next;
     }
 
+    @Override
     public SimpleNode<E> getNext() {
         return next;
     }

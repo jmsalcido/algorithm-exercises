@@ -1,6 +1,6 @@
 package org.otfusion.lists.nodes;
 
-public class Node<E> {
+public abstract class Node<E> {
 
     private final E data;
     private int index;
@@ -20,4 +20,6 @@ public class Node<E> {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    protected abstract Node<E> getNext();
 }

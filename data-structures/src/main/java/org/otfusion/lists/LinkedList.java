@@ -12,6 +12,7 @@ public class LinkedList<E> implements List<E> {
         size = 0;
     }
 
+    @Override
     public int size() {
         return size;
     }
@@ -40,7 +41,7 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public void add(E element, int index) {
-        checkIndex(index);
+        ListUtils.checkIndex(size(), index);
         SimpleNode<E> actualNode = rootNode;
         if(index == 0) {
             rootNode = new SimpleNode<E>(element, actualNode);
@@ -74,7 +75,7 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public void delete(int index) {
-        checkIndex(index);
+        ListUtils.checkIndex(size(), index);
 
         if(index == 0) {
             rootNode = rootNode.getNext();
@@ -110,7 +111,7 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        checkIndex(index);
+        ListUtils.checkIndex(size(), index);
 
         if(size == 0) {
             return null;
@@ -132,15 +133,5 @@ public class LinkedList<E> implements List<E> {
             return nextNode.getIndex() == index ? nextNode.getData() : null;
         }
         return null;
-    }
-
-    private void checkIndex(int index) {
-        if(index < 0) {
-            throw new NumberFormatException("Index cant be less than 0.");
-        }
-
-        if(index > size-1) {
-            throw new NumberFormatException("Index cant be larger than list size.");
-        }
     }
 }
