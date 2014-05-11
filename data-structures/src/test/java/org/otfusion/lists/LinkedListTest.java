@@ -1,7 +1,8 @@
-package org.otfusion.lists.linkedlist;
+package org.otfusion.lists;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.otfusion.lists.LinkedList;
 
 import static org.junit.Assert.*;
 

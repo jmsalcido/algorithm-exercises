@@ -1,8 +1,11 @@
-package org.otfusion.lists.linkedlist;
+package org.otfusion.lists;
 
-public class LinkedList<T> {
+import org.otfusion.lists.List;
+import org.otfusion.lists.nodes.SimpleNode;
 
-    private SimpleNode<T> rootNode;
+public class LinkedList<E> implements List<E> {
+
+    private SimpleNode<E> rootNode;
     private int size;
 
     public LinkedList() {
@@ -14,25 +17,27 @@ public class LinkedList<T> {
         return size;
     }
 
+    @Override
     // add at the end of the list
-    public void add(T element) {
+    public void add(E element) {
         if(element == null) {
             return;
         }
 
         if(rootNode == null) {
-            rootNode = new SimpleNode<T>(element, null);
+            rootNode = new SimpleNode<E>(element, null);
         } else {
-            SimpleNode<T> nextNode = rootNode;
+            SimpleNode<E> nextNode = rootNode;
             while(nextNode.getNext() != null) {
                 nextNode = nextNode.getNext();
             }
-            nextNode.setNext(new SimpleNode<T>(element, null));
+            nextNode.setNext(new SimpleNode<E>(element, null));
         }
         size+=1;
     }
 
-    public void remove(T element) {
+    @Override
+    public void remove(E element) {
         // failsafe check
         if(element == null || size == 0) {
             return;
@@ -43,9 +48,9 @@ public class LinkedList<T> {
                 rootNode = rootNode.getNext();
             }
         } else {
-            SimpleNode<T> nextNode = rootNode;
+            SimpleNode<E> nextNode = rootNode;
             while(nextNode.getNext() != null) {
-                SimpleNode<T> actualNode = nextNode;
+                SimpleNode<E> actualNode = nextNode;
                 nextNode = actualNode.getNext();
                 if(nextNode.getData().equals(element)) {
                     actualNode.setNext(nextNode.getNext());
@@ -56,7 +61,8 @@ public class LinkedList<T> {
         size -= 1;
     }
 
-    public T get(T element) {
+    @Override
+    public E get(E element) {
         // failsafe check
         if(element == null || size == 0) {
             return null;
@@ -65,9 +71,9 @@ public class LinkedList<T> {
         if(rootNode.getData().equals(element)) {
             return rootNode.getData();
         } else {
-            SimpleNode<T> nextNode = rootNode;
+            SimpleNode<E> nextNode = rootNode;
             while(nextNode.getNext() != null) {
-                SimpleNode<T> actualNode = nextNode;
+                SimpleNode<E> actualNode = nextNode;
                 nextNode = actualNode.getNext();
                 if(nextNode.getData().equals(element)) {
                     return nextNode.getData();
