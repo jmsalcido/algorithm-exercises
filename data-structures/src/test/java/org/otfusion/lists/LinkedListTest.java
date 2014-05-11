@@ -7,11 +7,11 @@ import static org.junit.Assert.*;
 
 public class LinkedListTest {
 
-    private LinkedList<String> linkedList;
+    private List<String> linkedList;
 
     @Before
     public void setUp() {
-        linkedList = new LinkedList<String>();
+        linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -19,14 +19,14 @@ public class LinkedListTest {
 
     @Test
     public void testNewLinkedList() {
-        linkedList = new LinkedList<String>();
+        linkedList = new LinkedList<>();
         assertNotNull(linkedList);
         assertEquals(0, linkedList.size());
     }
 
     @Test
     public void testAdd() {
-        linkedList = new LinkedList<String>();
+        linkedList = new LinkedList<>();
         linkedList.add("A");
         assertEquals(1, linkedList.size());
 
@@ -42,7 +42,7 @@ public class LinkedListTest {
 
     @Test
     public void testAddDuplicates() {
-        linkedList = new LinkedList<String>();
+        linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("A");
         linkedList.add("A");
@@ -56,7 +56,7 @@ public class LinkedListTest {
 
     @Test
     public void testAddIndex() {
-        LinkedList<Integer> integerLinkedList = new LinkedList<Integer>();
+        List<Integer> integerLinkedList = new LinkedList<>();
         integerLinkedList.add(4);
         integerLinkedList.add(5);
         integerLinkedList.add(6);
@@ -77,7 +77,7 @@ public class LinkedListTest {
 
     @Test
     public void testAddNull() {
-        linkedList = new LinkedList<String>();
+        linkedList = new LinkedList<>();
         linkedList.add(null);
         assertEquals(0, linkedList.size());
     }

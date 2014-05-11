@@ -23,7 +23,7 @@ public class LinkedList<E> implements List<E> {
         if(element == null) {
             return;
         }
-        SimpleNode<E> newNode = new SimpleNode<E>(element, null);
+        SimpleNode<E> newNode = new SimpleNode<>(element, null);
         if(rootNode == null) {
             rootNode = newNode;
         } else {
@@ -44,14 +44,14 @@ public class LinkedList<E> implements List<E> {
         ListUtils.checkIndex(size(), index);
         SimpleNode<E> actualNode = rootNode;
         if(index == 0) {
-            rootNode = new SimpleNode<E>(element, actualNode);
+            rootNode = new SimpleNode<>(element, actualNode);
             rootNode.setIndex(index);
             moveIndex(true, rootNode.getNext());
         } else {
             SimpleNode<E> nextNode = actualNode.getNext();
             while(nextNode != null) {
                 if(nextNode.getIndex() == index) {
-                    actualNode.setNext(new SimpleNode<E>(element, nextNode));
+                    actualNode.setNext(new SimpleNode<>(element, nextNode));
                     nextNode = actualNode.getNext();
                     nextNode .setIndex(index);
                     moveIndex(true, nextNode.getNext());
