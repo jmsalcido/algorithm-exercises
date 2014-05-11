@@ -1,4 +1,4 @@
-package org.otfusion.lists.nodes;
+package org.otfusion.nodes;
 
 // Using enums just to not use Objects
 public class SimpleNode<E> extends Node<E>{

@@ -1,6 +1,6 @@
 package org.otfusion.lists;
 
-import org.otfusion.lists.nodes.DoubleNode;
+import org.otfusion.nodes.DoubleNode;
 
 public class DoubleLinkedList<E> implements List<E>{
 

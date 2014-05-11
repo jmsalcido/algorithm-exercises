@@ -1,6 +1,6 @@
 package org.otfusion.lists;
 
-import org.otfusion.lists.nodes.SimpleNode;
+import org.otfusion.nodes.SimpleNode;
 
 public class LinkedList<E> implements List<E> {
 

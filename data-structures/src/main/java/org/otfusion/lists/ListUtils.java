@@ -1,6 +1,6 @@
 package org.otfusion.lists;
 
-import org.otfusion.lists.nodes.Node;
+import org.otfusion.nodes.Node;
 
 public class ListUtils {
     private ListUtils() {}

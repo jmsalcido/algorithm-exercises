@@ -1,4 +1,4 @@
-package org.otfusion.lists.nodes;
+package org.otfusion.nodes;
 
 public class DoubleNode<E> extends Node<E> {
 
