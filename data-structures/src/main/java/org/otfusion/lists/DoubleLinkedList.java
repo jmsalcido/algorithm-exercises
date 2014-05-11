@@ -9,14 +9,10 @@ public class DoubleLinkedList<E> implements List<E>{
 
     @Override
     public void add(E element) {
-        if(element == null) {
-            return;
-        }
-
         int index = 0;
         DoubleNode<E> newNode;
         if(rootNode == null) {
-            newNode = new DoubleNode<E>(element, null, rootNode);
+            newNode = new DoubleNode<>(element, null, rootNode);
             newNode.setIndex(index);
             rootNode = newNode;
         } else {
@@ -39,17 +35,77 @@ public class DoubleLinkedList<E> implements List<E>{
 
     @Override
     public void add(E element, int index) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        ListUtils.checkIndex(size(), index);
+
+        if(index == 0) {
+            DoubleNode<E> node = new DoubleNode<>(element, rootNode, null);
+            rootNode.setBefore(node);
+            rootNode = node;
+            ListUtils.moveIndex(true, rootNode.getNext());
+        } else {
+            DoubleNode<E> actualNode = rootNode;
+            DoubleNode<E> newNode;
+            while(actualNode != null) {
+                if(actualNode.getIndex() == index) {
+                    newNode = new DoubleNode<>(element, actualNode, actualNode.getBefore());
+                    newNode.setIndex(index);
+                    actualNode.getBefore().setNext(newNode);
+                    actualNode.setBefore(newNode);
+                    ListUtils.moveIndex(true, newNode.getNext());
+                }
+                actualNode = actualNode.getNext();
+            }
+        }
+        size++;
     }
 
     @Override
     public void delete(int index) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        ListUtils.checkIndex(size(), index);
+        if(index == 0) {
+            rootNode = rootNode.getNext();
+            if(rootNode == null) {
+                size--;
+                return;
+            }
+            rootNode.setBefore(null);
+            rootNode.setIndex(index);
+            ListUtils.moveIndex(false, rootNode.getNext());
+        } else {
+            DoubleNode<E> actualNode = rootNode;
+            while(actualNode != null) {
+                if(actualNode.getIndex() == index) {
+                    actualNode.getBefore().setNext(actualNode.getNext());
+                    if(actualNode.getNext() != null) {
+                        actualNode.getNext().setBefore(actualNode.getBefore());
+                    }
+                    ListUtils.moveIndex(false, actualNode.getNext());
+                }
+                actualNode = actualNode.getNext();
+            }
+        }
+        size--;
     }
 
     @Override
     public E get(int index) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        ListUtils.checkIndex(size(), index);
+        if(size() == 0) {
+            return null;
+        }
+
+        if(index == 0) {
+            return rootNode.getData();
+        }
+
+        DoubleNode<E> actualNode = rootNode;
+        while(actualNode != null) {
+            if(actualNode.getIndex() == index) {
+                return actualNode.getData();
+            }
+            actualNode = actualNode.getNext();
+        }
+        return null;
     }
 
     @Override
