@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.otfusion</groupId>
+    <artifactId>main</artifactId>
+    <packaging>pom</packaging>
+    <version>1</version>
+    <name>master</name>
+    <description>parent pom.xml</description>
+    <url>http://otfusion.org</url>
+    <modules>
+        <module>data-structures</module>
+    </modules>
+    <dependencies>
+
+        <!--Easy Mock-->
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Junit Addons-->
+        <dependency>
+            <groupId>junit-addons</groupId>
+            <artifactId>junit-addons</artifactId>
+            <version>1.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
