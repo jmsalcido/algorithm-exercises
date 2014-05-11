@@ -1,4 +1,4 @@
-package org.otfusion.lists;
+package org.otfusion.lists.linkedlist;
 
 // Using enums just to not use Objects
 public class SimpleNode<T> {

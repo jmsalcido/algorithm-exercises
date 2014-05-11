@@ -1,4 +1,4 @@
-package org.otfusion.lists;
+package org.otfusion.lists.linkedlist;
 
 public class LinkedList<T> {
 
