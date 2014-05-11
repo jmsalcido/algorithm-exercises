@@ -22,26 +22,45 @@ public class LinkedList<E> implements List<E> {
         if(element == null) {
             return;
         }
-
+        SimpleNode<E> newNode = new SimpleNode<E>(element, null);
         if(rootNode == null) {
-            rootNode = new SimpleNode<E>(element, null);
-            rootNode.setIndex(0);
+            rootNode = newNode;
         } else {
-            SimpleNode<E> nextNode = rootNode;
-            int index = rootNode.getIndex();
-            while(nextNode.getNext() != null) {
-                nextNode = nextNode.getNext();
-                index = nextNode.getIndex();
+            SimpleNode<E> actualNode = rootNode;
+            int index = 0;
+            while(actualNode.getNext() != null) {
+                actualNode = actualNode.getNext();
+                index = actualNode.getIndex();
             }
-            SimpleNode<E> newNode = new SimpleNode<E>(element, null);
             newNode.setIndex(index+1);
-            nextNode.setNext(newNode);
+            actualNode.setNext(newNode);
         }
-        size+=1;
+        size++;
     }
 
     @Override
     public void add(E element, int index) {
+        checkIndex(index);
+        SimpleNode<E> actualNode = rootNode;
+        if(index == 0) {
+            rootNode = new SimpleNode<E>(element, actualNode);
+            rootNode.setIndex(index);
+            moveIndex(true, rootNode.getNext());
+        } else {
+            SimpleNode<E> nextNode = actualNode.getNext();
+            while(nextNode != null) {
+                if(nextNode.getIndex() == index) {
+                    actualNode.setNext(new SimpleNode<E>(element, nextNode));
+                    nextNode = actualNode.getNext();
+                    nextNode .setIndex(index);
+                    moveIndex(true, nextNode.getNext());
+                    break;
+                }
+                actualNode = nextNode;
+                nextNode = nextNode.getNext();
+            }
+        }
+        size++;
     }
 
     private void removeNode(SimpleNode<E> actual, SimpleNode<E> delete) {
@@ -55,13 +74,7 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public void delete(int index) {
-        if(index < 0) {
-            throw new NumberFormatException("Index cant be less than 0.");
-        }
-
-        if(index > size-1) {
-            throw new NumberFormatException("Index cant be larger than list size.");
-        }
+        checkIndex(index);
 
         if(index == 0) {
             rootNode = rootNode.getNext();
@@ -97,9 +110,7 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if(index < 0) {
-            throw new NumberFormatException("Index cant be less than 0.");
-        }
+        checkIndex(index);
 
         if(size == 0) {
             return null;
@@ -121,5 +132,15 @@ public class LinkedList<E> implements List<E> {
             return nextNode.getIndex() == index ? nextNode.getData() : null;
         }
         return null;
+    }
+
+    private void checkIndex(int index) {
+        if(index < 0) {
+            throw new NumberFormatException("Index cant be less than 0.");
+        }
+
+        if(index > size-1) {
+            throw new NumberFormatException("Index cant be larger than list size.");
+        }
     }
 }
