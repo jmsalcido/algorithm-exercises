@@ -1,13 +1,12 @@
 package org.otfusion.lists.nodes;
 
 // Using enums just to not use Objects
-public class SimpleNode<E> {
+public class SimpleNode<E> extends Node<E>{
 
-    private final E data;
     private SimpleNode<E> next;
 
     public SimpleNode(E data, SimpleNode<E> next) {
-        this.data = data;
+        super(data);
         this.next = next;
     }
 
@@ -17,9 +16,5 @@ public class SimpleNode<E> {
 
     public void setNext(SimpleNode<E> next) {
         this.next = next;
-    }
-
-    public E getData() {
-        return data;
     }
 }

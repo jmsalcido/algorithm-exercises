@@ -2,7 +2,6 @@ package org.otfusion.lists;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.otfusion.lists.LinkedList;
 
 import static org.junit.Assert.*;
 
@@ -60,36 +59,55 @@ public class LinkedListTest {
 
     @Test
     public void testGet() {
-        assertEquals("A", linkedList.get("A"));
-        assertEquals("B", linkedList.get("B"));
-        assertEquals("C", linkedList.get("C"));
-        assertEquals(null, linkedList.get("D"));
-        assertEquals(null, linkedList.get(null));
+        assertEquals("A", linkedList.get(0));
+        assertEquals("B", linkedList.get(1));
+        assertEquals("C", linkedList.get(2));
+        try {
+            linkedList.get(-1);
+            fail("should not get here.");
+        } catch(Exception e) {
+            assertTrue(e.getMessage().contains("less than 0"));
+        }
+
+        try {
+            linkedList.get(5);
+        } catch(Exception e) {
+            assertTrue(e.getMessage().contains("larger than"));
+        }
     }
 
     @Test
     public void testRemove() {
         assertEquals(3, linkedList.size());
-        linkedList.remove("B");
-        assertEquals(null, linkedList.get("B"));
+        linkedList.delete(1);
+        assertEquals("C", linkedList.get(1));
         assertEquals(2, linkedList.size());
+        linkedList.delete(1);
+        assertEquals(null, linkedList.get(1));
+    }
+
+    @Test
+    public void testRemoveIndex() {
+        assertEquals(3, linkedList.size());
+        String b = linkedList.get(1);
+        linkedList.delete(1);
+        assertEquals(2, linkedList.size());
+        assertFalse(b.equals(linkedList.get(1)));
     }
 
     @Test
     public void testRemoveRoot() {
-        linkedList.remove("A");
-        assertEquals(null, linkedList.get("A"));
+        String a = linkedList.get(0);
+        linkedList.delete(0);
         assertEquals(2, linkedList.size());
+        assertFalse(a.equals(linkedList.get(0)));
     }
 
     @Test
     public void testRemoveAll() {
-        linkedList.remove("A");
-        linkedList.remove("B");
-        linkedList.remove("C");
-        assertEquals(null, linkedList.get("A"));
-        assertEquals(null, linkedList.get("B"));
-        assertEquals(null, linkedList.get("C"));
+        linkedList.delete(2);
+        linkedList.delete(1);
+        linkedList.delete(0);
         assertEquals(0, linkedList.size());
     }
 }
