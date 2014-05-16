@@ -1,3 +1,5 @@
-[![Build Status](https://travis-ci.org/jmsalcido/data-structures.svg?branch=master)](https://travis-ci.org/jmsalcido/data-structures)
+Project to learn about data-structures like linked list, binary trees, tries, hashmaps, etc, etc, etc...
 
-Well I will be configuring travis-ci to use mvn builds in order to get some unit testing practices and also learn about data-structures like linked list, binary trees, tries, bloom filters, hashmaps, etc,etc,etc.
+The plan is to implement them in various languages.
+
+[![Build Status](https://travis-ci.org/jmsalcido/data-structures.svg?branch=master)](https://travis-ci.org/jmsalcido/data-structures)
