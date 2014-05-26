@@ -10,6 +10,7 @@
     <url>http://otfusion.org</url>
     <modules>
         <module>data-structures</module>
+        <module>algorithms</module>
     </modules>
 
     <!-- using this while 1.8 is not supported... mang-->
