@@ -3,7 +3,6 @@
 # Jose Salcido
 #
 
-# for any reason this shit is not sorting the first element.
 def insertionsort(int_list):
     for j in range(1,len(int_list)):
         key = int_list[j]

@@ -6,4 +6,6 @@ public interface Sort {
 
     public void sort(List<Integer> listToSort);
 
+    public void sortDecreased(List<Integer> listToSort);
+
 }
