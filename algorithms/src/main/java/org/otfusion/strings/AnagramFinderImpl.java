@@ -8,6 +8,11 @@ public class AnagramFinderImpl implements AnagramFinder {
 
     @Override
     public boolean areAnagrams(String s1, String s2) {
+
+        if(s1 == null || s2 == null) {
+            return false;
+        }
+
         if(s1.equals(s2)) {
             return true;
         }
@@ -39,7 +44,7 @@ public class AnagramFinderImpl implements AnagramFinder {
     }
 
     private List<Character> stringToCharList(String str) {
-        List<Character> list = new ArrayList();
+        List<Character> list = new ArrayList<>();
         for(Character c : str.toCharArray()) {
             list.add(c);
         }
