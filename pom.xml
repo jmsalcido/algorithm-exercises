@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.otfusion</groupId>
     <artifactId>main</artifactId>
@@ -11,11 +11,13 @@
     <modules>
         <module>data-structures</module>
         <module>algorithms</module>
-    </modules>
+        <module>common</module>
+  </modules>
 
     <!-- using this while 1.8 is not supported... mang-->
     <properties>
         <java.version>1.7</java.version>
+        <commons.version>2.4</commons.version>
     </properties>
 
     <dependencies>
@@ -35,6 +37,22 @@
             <version>1.4</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Apache Commons-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
