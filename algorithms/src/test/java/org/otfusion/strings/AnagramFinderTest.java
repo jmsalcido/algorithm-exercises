@@ -3,11 +3,11 @@ package org.otfusion.strings;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class AnagramFinderTest {
-
-    AnagramFinder anagramFinder;
+    private AnagramFinder anagramFinder;
 
     @Before
     public void setUp() {
@@ -16,6 +16,7 @@ public class AnagramFinderTest {
 
     @Test
     public void testAreAnagrams() {
+        assertFalse(anagramFinder.areAnagrams(null, "null"));
         assertTrue(anagramFinder.areAnagrams("XXXYYX", "YYXXXX"));
         assertTrue(anagramFinder.areAnagrams("jose", "oesj"));
         assertTrue(anagramFinder.areAnagrams("jose", "jose"));
