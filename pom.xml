@@ -12,7 +12,7 @@
         <module>data-structures</module>
         <module>algorithms</module>
         <module>common</module>
-        <module>percolation</module>
+        <module>percolation-algs4</module>
   </modules>
 
     <!-- using this while 1.8 is not supported... mang-->
