@@ -7,18 +7,18 @@ public class Percolation {
     private final boolean[] grid;
 
     public Percolation(final int N) {
-        checkParameters(N);
+        if(N <= 0) {
+            throw new IllegalArgumentException("N cant be 0 or less.");
+        }
         this.N = N;
         int nxn = N*N;
         TOP = nxn;
         BOTTOM = TOP+1;
-        unionFind = new WeightedQuickUnionUF(nxn+2);
+        int size = nxn + 2;
+        unionFind = new WeightedQuickUnionUF(size);
 
-        // GRID STUFF.
-        grid = new boolean[nxn+2];
-        for (int i = 0; i < nxn+2; i++) {
-            grid[i] = false;
-        }
+        // Initialize grid to closed.
+        grid = new boolean[size];
     }
 
     public void open(int i, int j) {
@@ -33,10 +33,10 @@ public class Percolation {
             if (p >= (N*(N-1))) {
                 unionFind.union(p, BOTTOM);
             }
-            openSite(p, i-1, j);
-            openSite(p, i+1, j);
-            openSite(p, i, j-1);
-            openSite(p, i, j+1);
+            openSite(p, i - 1, j);
+            openSite(p, i + 1, j);
+            openSite(p, i, j - 1);
+            openSite(p, i, j + 1);
         }
     }
 
