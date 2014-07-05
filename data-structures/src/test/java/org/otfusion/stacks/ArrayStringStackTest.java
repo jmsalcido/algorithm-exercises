@@ -21,6 +21,21 @@ public class ArrayStringStackTest {
         assertEquals("are", stack.pop());
         assertEquals("how", stack.pop());
         assertEquals("Hello", stack.pop());
+        stack.push("BOOM!");
+        assertEquals(1, stack.size());
+        assertEquals("BOOM!", stack.pop());
+        assertEquals(0, stack.size());
+    }
+
+    @Test
+    public void testArraySize() throws Exception {
+        ResizingArrayStringStack stack = new ResizingArrayStringStack();
+        try {
+            assertEquals(null, stack.pop());
+            fail("Bang, there are no data in an array!");
+        } catch(ArrayIndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
     }
 
     @Test
