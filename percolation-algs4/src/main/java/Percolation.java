@@ -7,57 +7,63 @@ public class Percolation {
     private final boolean[] grid;
 
     public Percolation(final int N) {
-        if(N <= 0) {
+        if (N <= 0) {
             throw new IllegalArgumentException("N cant be 0 or less.");
         }
         this.N = N;
         int nxn = N*N;
         TOP = nxn;
         BOTTOM = TOP+1;
-        int size = nxn + 2;
-        unionFind = new WeightedQuickUnionUF(size);
+        int size = nxn;
+        unionFind = new WeightedQuickUnionUF(size+2);
 
         // Initialize grid to closed.
         grid = new boolean[size];
     }
 
     public void open(int i, int j) {
-        checkParameters(i);
-        checkParameters(j);
+        checkParameters(i, j);
         if (!isOpen(i, j)) {
             int p = xyTo1D(i-1, j-1);
             grid[p] = true;
             if (p < N) {
                 unionFind.union(p, TOP);
             }
-            if (p >= (N*(N-1))) {
-                unionFind.union(p, BOTTOM);
+            boolean n1 = openSite(p, i - 1, j);
+            boolean n2 = openSite(p, i + 1, j);
+            boolean n3 = openSite(p, i, j - 1);
+            boolean n4 = openSite(p, i, j + 1);
+            if (n1 || n2 || n3 || n4) {
+                for (int b = grid.length-1; b >= grid.length-N; b--) {
+                    if (grid[b] && unionFind.connected(TOP, b)) {
+                        unionFind.union(b, BOTTOM);
+                        break;
+                    }
+                }
             }
-            openSite(p, i - 1, j);
-            openSite(p, i + 1, j);
-            openSite(p, i, j - 1);
-            openSite(p, i, j + 1);
+            if (grid.length == 1) {
+                unionFind.union(TOP, BOTTOM);
+            }
         }
     }
 
-    private void openSite(int p, int i, int j) {
+    private boolean openSite(int p, int i, int j) {
         int q = xyTo1D(i-1, j-1);
         if (!(q < 0 || q >= N*N) && isOpen(i, j)) {
             unionFind.union(p, q);
+            return true;
         }
+        return false;
     }
 
     public boolean isOpen(int i, int j) {
-        checkParameters(i);
-        checkParameters(j);
+        checkParameters(i, j);
         return grid[xyTo1D(i-1, j-1)];
     }
 
     public boolean isFull(int i, int j) {
-        checkParameters(i);
-        checkParameters(j);
-        // BUG:
-        return unionFind.connected(xyTo1D(i-1, j-1),TOP);
+        checkParameters(i, j);
+        return unionFind.connected(TOP, xyTo1D(i-1, j-1));
     }
 
     public boolean percolates() {
@@ -71,7 +77,8 @@ public class Percolation {
         return (x*N)+y;
     }
 
-    private void checkParameters(int i) {
-        if (i <= 0 || i > N) throw new IndexOutOfBoundsException(String.format("row index %d out of bounds", i));
+    private void checkParameters(int i, int j) {
+        if (i <= 0 || i > N) throw new IndexOutOfBoundsException(String.format("row index i: %d out of bounds", i));
+        if (j <= 0 || j > N) throw new IndexOutOfBoundsException(String.format("row index j: %d out of bounds", j));
     }
 }
