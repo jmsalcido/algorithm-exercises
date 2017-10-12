@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-10-12T01:24:58" hostname="NSL-JSALCIDOs-MacBook-Pro.local" time="0.035">
+  <properties/>
+  <testcase name="application has a greeting" classname="AppTest" time="0.035"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
