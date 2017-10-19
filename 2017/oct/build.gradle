@@ -33,6 +33,12 @@ dependencies {
 
 }
 
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
+
 // Define the main class for the application
 mainClassName = 'App'
 
