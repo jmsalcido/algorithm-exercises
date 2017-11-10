@@ -1,8 +1,12 @@
+package codefights;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static codefights.ListNodeUtils.list;
 
 
 @RunWith(JUnitParamsRunner.class)
@@ -21,29 +25,9 @@ public class RemoveKFromListTest {
     }
 
 
-    private static RemoveKFromList.ListNode<Integer> list(int... numbers) {
-        RemoveKFromList.ListNode<Integer> list = null;
-        RemoveKFromList.ListNode<Integer> last = null;
-        for (int n : numbers) {
-            if (last != null) {
-                last.next = new RemoveKFromList.ListNode<>(n);
-                last = last.next;
-            } else {
-                last = new RemoveKFromList.ListNode<>(n);
-            }
-
-            if (list == null) {
-                list = last;
-            }
-        }
-
-        return list;
-    }
-
-
     @Test
     @Parameters
-    public void test(RemoveKFromList.ListNode<Integer> result, RemoveKFromList.ListNode<Integer> l, int k) throws Exception {
+    public void test(ListNode<Integer> result, ListNode<Integer> l, int k) throws Exception {
         RemoveKFromList removeKFromList = new RemoveKFromList();
 
         Assert.assertEquals(result, removeKFromList.removeKFromList(l, k));

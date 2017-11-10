@@ -1,3 +1,6 @@
+package codefights;
+
+import codefights.RotateSquareMatrixAntiClockwise;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
