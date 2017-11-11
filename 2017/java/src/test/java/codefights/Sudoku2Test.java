@@ -1,6 +1,5 @@
 package codefights;
 
-import codefights.Sudoku2;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
