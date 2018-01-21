@@ -7,5 +7,4 @@ public class Strings {
         return (otherString + otherString).contains(input);
     }
 
-
 }
