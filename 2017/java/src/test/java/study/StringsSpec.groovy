@@ -16,7 +16,21 @@ class StringsSpec extends Specification {
         input    | otherString | output
         "string" | "trings"    | true
         "string" | "tringss"   | false
-        "string" | "ringst"   | false
+        "string" | "ringst"    | false
+    }
+
+    def "reverseString"() {
+        def instance = Strings.newInstance()
+        expect:
+        assert instance.reverseString(string) == reversed
+
+        where:
+        string                   | reversed
+        "cat"                    | "tac"
+        "boom"                   | "moob"
+        "boomabo"                | "obamoob"
+        "asd asd asd asd asdasd" | "dsadsa dsa dsa dsa dsa"
+
     }
 
 }
