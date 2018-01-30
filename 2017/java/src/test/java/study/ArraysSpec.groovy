@@ -35,4 +35,16 @@ class ArraysSpec extends Specification {
         [-7, 1, 5, 2, -4, 231, 0] | -1
     }
 
+    def "findMaximumSumFromSubArray"() {
+        expect:
+        assert instance.findMaximumSumFromSubArray(arr as int[]) == output
+
+        where:
+        arr                                             | output
+        [-2, -3, 4, -1, -2, 1, 5, -3]                   | 7
+        [-2, -3, 4, 10, -2, 1, 5, -3]                   | 18
+        [-2, -3, 4, 110, -2, -101, -5, -3]              | 114
+        [-1000, -100002, -4000, -110, -2, -101, -5, -3] | -2
+    }
+
 }

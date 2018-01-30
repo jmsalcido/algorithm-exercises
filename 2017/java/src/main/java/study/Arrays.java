@@ -117,4 +117,47 @@ public class Arrays {
         return -1;
     }
 
+    // find max sum in subarray with indexes in O(n) time (we iterate all the array).
+    // space: O(6) = O(C) = O(1)
+    public int findMaximumSumFromSubArray(int[] array) {
+        int currentMax = Integer.MIN_VALUE;
+        int maxHere = 0;
+        int start = 0;
+        int end = 0;
+        int actualStart = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            // sum all numbers, always.
+            maxHere += array[i];
+
+            // if currentMax is small than the maxHere, just assign it, this is the biggest number.
+            if (currentMax < maxHere) {
+                currentMax = maxHere;
+
+                // start is going to be actualStart, as we are in a current biggest strike.
+                // actualStart does not change until maxHere goes very low. (low than 0).
+                start = actualStart;
+
+                // end is going to be actual i, as there is no current final max.
+                end = i;
+            }
+
+            // if maxHere is less than 0, we should start again to sum.
+            if (maxHere < 0) {
+                maxHere = 0;
+
+                // so, start is going to be, i + 1 (current array position + 1) because at this point, it just
+                // negative value for the maxHere.
+                actualStart = i + 1;
+            }
+
+        }
+
+        System.out.println("start: " + start + ", end: " + end);
+
+        return currentMax;
+
+    }
+
 }
