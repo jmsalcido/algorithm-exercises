@@ -1,6 +1,5 @@
 package study
 
-import codefights.ListNode
 import spock.lang.Specification
 import spock.lang.Unroll
 import study.model.RandomSingleNode
@@ -8,7 +7,7 @@ import study.model.RandomSingleNode
 @Unroll
 class LinkedListsSpec extends Specification {
 
-    LinkedLists instance;
+    LinkedLists instance
 
     def setup() {
         instance = new LinkedLists()
@@ -51,38 +50,6 @@ class LinkedListsSpec extends Specification {
         sb.append("]")
 
         return sb.toString()
-    }
-
-    def "isLoopedList"() {
-        expect:
-        assert instance.isLoopedList(input) == output
-
-        where:
-        input           | output
-        loopedList()    | true
-        notLoopedList() | false
-    }
-
-    private static def loopedList() {
-        ListNode<Object> list = new ListNode<>(null)
-        list.next = new ListNode<>(null)
-        list.next.next = new ListNode<>(null)
-        list.next.next.next = new ListNode<>(null)
-        list.next.next.next.next = new ListNode<>(null)
-        list.next.next.next.next.next = new ListNode<>(null)
-        list.next.next.next.next.next.next = new ListNode<>(null)
-        list.next.next.next.next.next.next.next = list.next.next.next.next
-    }
-
-    private static def notLoopedList() {
-        ListNode<Object> list = new ListNode<>(null)
-        list.next = new ListNode<>(null)
-        list.next.next = new ListNode<>(null)
-        list.next.next.next = new ListNode<>(null)
-        list.next.next.next.next = new ListNode<>(null)
-        list.next.next.next.next.next = new ListNode<>(null)
-        list.next.next.next.next.next.next = new ListNode<>(null)
-        list.next.next.next.next.next.next.next = new ListNode<>(null)
     }
 
 }
