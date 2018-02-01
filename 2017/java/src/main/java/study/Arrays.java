@@ -200,4 +200,32 @@ public class Arrays {
         return arr;
     }
 
+    public int[] topElements(int[] array, int n) {
+        if (array == null) {
+            return null;
+        }
+
+        java.util.Arrays.sort(array);
+
+        int length = array.length;
+        if (length > n) {
+            length = n;
+        }
+
+        int[] newArr = new int[length];
+
+        int count = 0;
+
+        for (int i = array.length - 1; i >= 0; i--) {
+            newArr[count] = array[i];
+            count++;
+
+            if (count == n) {
+                break;
+            }
+        }
+
+        return newArr;
+    }
+
 }

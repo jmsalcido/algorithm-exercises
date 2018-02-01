@@ -47,4 +47,18 @@ class ArraysSpec extends Specification {
         [-1000, -100002, -4000, -110, -2, -101, -5, -3] | -2
     }
 
+    def "topElements"() {
+        expect:
+        assert instance.topElements(input as int[], n) == output as int[]
+
+        where:
+        input                                  | n | output
+        null                                   | 5 | null
+        [13]                                   | 5 | 13
+        [1, 100, 22, 33]                       | 5 | [100, 33, 22, 1]
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]        | 5 | [10, 9, 8, 7, 6]
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]        | 6 | [10, 9, 8, 7, 6, 5]
+        [44, 66, 22, 33, 55, 1, 2, 55, 123213] | 6 | [123213, 66, 55, 55, 44, 33]
+    }
+
 }
