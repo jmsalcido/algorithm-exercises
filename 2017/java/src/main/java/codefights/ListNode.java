@@ -3,12 +3,12 @@ package codefights;
 import java.util.Objects;
 
 public class ListNode<T> {
-    ListNode(T x) {
+    public ListNode(T x) {
         value = x;
     }
 
-    T value;
-    ListNode<T> next;
+    public T value;
+    public ListNode<T> next;
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,6 @@
 package study;
 
+import codefights.ListNode;
 import study.model.RandomSingleNode;
 
 public class LinkedLists {
@@ -64,6 +65,25 @@ public class LinkedLists {
 
         return cloned;
 
+    }
+
+    // this is O(n) as we will probably read all the list.
+    boolean isLoopedList(ListNode<Object> node) {
+        ListNode<Object> pointer1 = node;
+        ListNode<Object> pointer2 = node;
+
+        while(true) {
+            if (pointer2 != null && pointer2.next != null) {
+                pointer2 = pointer2.next.next;
+            } else {
+                return false;
+            }
+
+            pointer1 = pointer1.next;
+            if (pointer1 == pointer2) {
+                return true;
+            }
+        }
     }
 
 }
