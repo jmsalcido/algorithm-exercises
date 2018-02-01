@@ -160,4 +160,44 @@ public class Arrays {
 
     }
 
+    @SuppressWarnings("ManualArrayCopy")
+    public int[] leftRotate1(int[] arr, int n) {
+
+        if (arr == null) {
+            return null;
+        }
+
+        for (int i = 0; i < n; i++) {
+            int tmp = arr[0];
+            for (int j = 1; j < arr.length; j++) {
+                arr[j - 1] = arr[j];
+            }
+            arr[arr.length - 1] = tmp;
+        }
+
+        return arr;
+    }
+
+    public int[] leftRotate2(int[] arr, int n) {
+        // lots of problems here... found there is a better way with the GCD (greatest common denominator)
+        // will try tomorrow.
+        if (arr == null || n <= 0) {
+            return arr;
+        }
+
+        int times = n % arr.length;
+
+        for (int i = 0; i < arr.length; i++) {
+            int tmp = arr[i];
+            int swapIndex = i + times;
+            if (swapIndex >= arr.length) {
+                swapIndex = arr.length - 1;
+            }
+            arr[i] = arr[swapIndex];
+            arr[swapIndex] = tmp;
+        }
+
+        return arr;
+    }
+
 }
