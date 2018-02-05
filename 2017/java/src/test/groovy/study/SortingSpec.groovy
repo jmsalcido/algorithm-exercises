@@ -29,5 +29,22 @@ class SortingSpec extends Specification {
         [1, 1, 1, 1, 1]             | [1, 1, 1, 1, 1]
     }
 
+    def "selectionSortDesc"() {
+        def values = input as int[]
+        instance.selectionSortDesc(values)
+
+        expect:
+        assert values == output as int[]
+
+        where:
+        input                       | output
+        [33, 44, 22, 22, 23, 21, 1] | [44, 33, 23, 22, 22, 21, 1]
+        null                        | null
+        [1]                         | [1]
+        [1, 2, 3, 4]                | [4, 3, 2, 1]
+        [4, 3, 2, 1]                | [4, 3, 2, 1]
+        [1, 1, 1, 1, 1]             | [1, 1, 1, 1, 1]
+    }
+
 
 }
