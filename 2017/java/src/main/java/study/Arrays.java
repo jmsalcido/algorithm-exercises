@@ -156,6 +156,8 @@ public class Arrays {
 
         System.out.println("start: " + start + ", end: " + end);
 
+        // you could return max subarray here.
+
         return currentMax;
 
     }
