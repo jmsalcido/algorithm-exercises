@@ -19,13 +19,52 @@ class TreesSpec extends Specification {
         assert bfs == output
 
         where:
-        input       | output
-        null        | [] as LinkedList<Integer>
-        BFSinput1() | [1, 2, 3, 4, 5, 6, 7] as LinkedList<Integer>
-        BFSinput2() | [0, 5, 1, 2, 1, 1, 2, 4, 7, 10] as LinkedList<Integer>
+        input         | output
+        null          | [] as LinkedList<Integer>
+        treesInput1() | [1, 2, 3, 4, 5, 6, 7] as LinkedList<Integer>
+        treesInput2() | [0, 5, 1, 2, 1, 1, 2, 4, 7, 10] as LinkedList<Integer>
     }
 
-    private static BinaryTreeNode BFSinput1() {
+    def "DFS preorder"() {
+        def dfs = instance.DFSPreorder(input)
+
+        expect:
+        assert dfs == output
+
+        where:
+        input         | output
+        null          | [] as LinkedList<Integer>
+        treesInput1() | [1, 2, 4, 5, 3, 6, 7] as LinkedList<Integer>
+        treesInput2() | [0, 5, 2, 1, 4, 1, 1, 7, 10, 2] as LinkedList<Integer>
+    }
+
+    def "DFS inorder"() {
+        def dfs = instance.DFSInorder(input)
+
+        expect:
+        assert dfs == output
+
+        where:
+        input         | output
+        null          | [] as LinkedList<Integer>
+        treesInput1() | [4, 2, 5, 1, 6, 3, 7] as LinkedList<Integer>
+        treesInput2() | [2, 5, 4, 1, 0, 1, 7, 10, 1, 2] as LinkedList<Integer>
+    }
+
+    def "DFS postorder"() {
+        def dfs = instance.DFSPostorder(input)
+
+        expect:
+        assert dfs == output
+
+        where:
+        input         | output
+        null          | [] as LinkedList<Integer>
+        treesInput1() | [4, 5, 2, 6, 7, 3, 1] as LinkedList<Integer>
+        treesInput2() | [2, 4, 1, 5, 10, 7, 1, 2, 1, 0] as LinkedList<Integer>
+    }
+
+    private static BinaryTreeNode treesInput1() {
         BinaryTreeNode binaryTreeNode = new BinaryTreeNode(1)
         binaryTreeNode.left = new BinaryTreeNode(2)
         binaryTreeNode.right = new BinaryTreeNode(3)
@@ -39,7 +78,7 @@ class TreesSpec extends Specification {
         return binaryTreeNode
     }
 
-    private static BinaryTreeNode BFSinput2() {
+    private static BinaryTreeNode treesInput2() {
         BinaryTreeNode binaryTreeNode = new BinaryTreeNode(0)
 
         binaryTreeNode.left = new BinaryTreeNode(5)
