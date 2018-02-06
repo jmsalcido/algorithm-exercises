@@ -1,6 +1,6 @@
-package study;
+package study.sorting;
 
-public class Sorting {
+public class SelectionSort {
 
     public void selectionSort(int[] arr) {
 

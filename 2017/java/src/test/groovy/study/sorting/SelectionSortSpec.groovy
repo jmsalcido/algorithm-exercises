@@ -1,15 +1,16 @@
-package study
+package study.sorting
 
 import spock.lang.Specification
 import spock.lang.Unroll
+import study.sorting.SelectionSort
 
 @Unroll
-class SortingSpec extends Specification {
+class SelectionSortSpec extends Specification {
 
-    Sorting instance
+    SelectionSort instance
 
     def setup() {
-        instance = new Sorting()
+        instance = new SelectionSort()
     }
 
     def "selectionSort"() {
